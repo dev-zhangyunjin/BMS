@@ -1,11 +1,13 @@
 <template>
-  <router-view />
+    <div>
+
+    </div>
 </template>
 
-<script setup name="app">
+<script setup name="404">
 /**
 * @author 张云进
-* @description 容器
+* @description 错误页 404
 */
 </script>
 

@@ -1,11 +1,13 @@
 <template>
-  <router-view />
+    <div>
+
+    </div>
 </template>
 
-<script setup name="app">
+<script setup name="403">
 /**
 * @author 张云进
-* @description 容器
+* @description 用户已登录但权限不足
 */
 </script>
 

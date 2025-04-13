@@ -1,11 +1,11 @@
 <template>
-  <router-view />
+    <h1>layout</h1>
 </template>
 
-<script setup name="app">
+<script setup name="layout">
 /**
 * @author 张云进
-* @description 容器
+* @description 
 */
 </script>
 
