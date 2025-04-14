@@ -24,7 +24,7 @@
                     </el-form-item>
                     <el-form-item>
                         <div style="display: flex; align-items: center;justify-content: space-between;width: 100%;">
-                            <el-checkbox label="记住密码" v-model="form.remeber" />
+                            <el-checkbox label="记住密码" v-model="form.rememberMe" />
                             <a href="" class="">忘记密码</a>
                         </div>
                     </el-form-item>
@@ -46,44 +46,61 @@ import loginLeft from "@/assets/images/login-left.png"
 import { reactive, ref } from "vue";
 import useStore from "@/pinia"
 import Cookies from "js-cookie";
-const route = useRoute();
-console.log(route, "route");
+import { encrypt, decrypt } from "@/utils/jsencrypt"
 
 const store = useStore();
 const form = reactive({
     userName: '',
     password: '',
-    remeber: false
+    rememberMe: false
 })
+const redirect = ref(undefined);
+const route = useRoute();
+const router = useRouter();
+watch(route, (newRoute) => {
+    redirect.value = newRoute.query && newRoute.query.redirect;
+}, { immediate: true });
 // ref
 const formRef = ref(null)
 // 提交表单
 const submit = () => {
-    console.log(store.user.token, "store");
-
     formRef.value.validate((valid) => {
         if (valid) {
-            // 加密password
-
-            // login api
             store.user.login(form).then(res => {
-                if (form.remeber) {
-                    Cookies.set("username", loginForm.value.username, { expires: 30 });
-                    Cookies.set("password", encrypt(loginForm.value.password), { expires: 30 });
-                    Cookies.set("rememberMe", loginForm.value.rememberMe, { expires: 30 });
+                if (form.rememberMe) {
+                    Cookies.set("username", form.userName, { expires: 30 });
+                    Cookies.set("password", encrypt(form.password), { expires: 30 });
+                    Cookies.set("rememberMe", form.rememberMe, { expires: 30 });
                 } else {
                     // 否则移除
                     Cookies.remove("username");
                     Cookies.remove("password");
                     Cookies.remove("rememberMe");
                 }
+                const query = route.query;
+                const otherQueryParams = Object.keys(query).reduce((acc, cur) => {
+                    if (cur !== "redirect") {
+                        acc[cur] = query[cur];
+                    }
+                    return acc;
+                }, {});
+                router.push({ path: redirect.value || "/", query: otherQueryParams });
             }).catch(err => {
 
             })
         }
     })
 }
+function getCookie() {
+    const username = Cookies.get("username");
+    const password = Cookies.get("password");
+    const rememberMe = Cookies.get("rememberMe");
+    form.userName = username === undefined ? form.userName : username;
+    form.password = password === undefined ? form.password : decrypt(password);
+    form.rememberMe = rememberMe === undefined ? false : Boolean(rememberMe);
+}
 
+getCookie();
 </script>
 
 <style lang='scss' scoped>

@@ -5,4 +5,4 @@ export const getToken = () => Cookies.get(TokenKey)
 
 export const setToken = (value) => Cookies.set(TokenKey, value)
 
-export const removeToken = () => Cookies.remove()
+export const removeToken = () => Cookies.remove(TokenKey)

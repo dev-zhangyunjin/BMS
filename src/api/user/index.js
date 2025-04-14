@@ -16,4 +16,9 @@ export const userLogin = () => {
     //     method: false,
     //     data: data
     // })
-} 
+}
+export const userLogout = () => {
+    return Promise.resolve({
+
+    })
+}

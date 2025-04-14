@@ -1,22 +1,13 @@
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import createVitePlugins from './vite/plugins'
 import { resolve } from "path";
-import AutoImport from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {
     root: '',
     base: '/webapp/',
-    plugins: [vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()]
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()]
-    })
-    ],
+    plugins: createVitePlugins(env, command === 'build'),
     resolve: {
       // 为路径取别名
       alias: {
