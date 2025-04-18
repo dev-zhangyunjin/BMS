@@ -1,7 +1,5 @@
 <template>
-    <div>
-
-    </div>
+    <el-result title="404" sub-title="Sorry, request error"></el-result>
 </template>
 
 <script setup name="404">

@@ -1,5 +1,5 @@
 import userStore from "./modules/user"
-import permissionStore from "./modules/user"
+import permissionStore from "./modules/permission"
 const useStore = () => {
     return {
         permission: permissionStore(),

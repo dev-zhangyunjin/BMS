@@ -1,5 +1,5 @@
 <template>
-    <Icon :icon="name" />
+    <Icon :icon="name" class="icon" />
 </template>
 
 <script setup name="icon">
@@ -16,4 +16,8 @@ const props = defineProps({
 })
 </script>
 
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+.icon {
+    font-size: 1.8rem;
+}
+</style>

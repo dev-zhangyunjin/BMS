@@ -2,7 +2,6 @@ import router from "./router"
 import { getToken } from "@/utils/auth"
 import NProgress from 'nprogress'
 const whiteList = ['/login'];
-
 NProgress.configure({ showSpinner: false });
 router.beforeEach((to, from, next) => {
     NProgress.start()

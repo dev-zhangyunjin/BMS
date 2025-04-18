@@ -1,14 +1,13 @@
 <template>
     <el-scrollbar>
-
         <div class="tags-container">
             <div class="tags-item" v-for="i in 20" :class="i === activeKey ? 'active' : ''" @click="handleTo(i)">
                 <span>首页{{ i }}</span>
-                <Cssicon name="material-symbols:close-rounded" v-if="i !== 1" class="delete" />
+                <Cssicon name="material-symbols:close-rounded" v-if="i !== 1" class="delete"
+                    @click.stop="handleDelete" />
             </div>
         </div>
     </el-scrollbar>
-
 </template>
 
 <script setup>
@@ -20,38 +19,58 @@ const activeKey = ref(1)
 const handleTo = (i) => {
     activeKey.value = i
 }
+const handleDelete = () => {
+
+}
 </script>
 
 <style lang='scss' scoped>
 .tags-container {
     display: flex;
-    padding: 6px 0;
+    margin-top: 6px;
+    padding: 6px;
+    // background-color: #FFF;
 
     .tags-item {
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        font-size: 0.9rem;
+        font-size: 0.72rem;
         color: rgba(160, 174, 192, 1);
-        border: 1px solid #fff;
-        padding: 4px;
+        border: 1px solid #eeeeee;
+        padding: 4px 2px 4px 6px;
+        background-color: #fff;
         cursor: pointer;
         margin: 0 2px 0 0;
         border-radius: 2px;
 
         span {
-            padding-right: 2px;
+            padding-right: 4px;
         }
 
         .delete:hover {
-            // color: #fff;
+            // padding-left: 6px;
+            background-color: rgba(160, 174, 192, 1);
+            border-radius: 50%;
+            color: #fff;
         }
     }
 
     .active {
         color: #fff;
         background-color: rgba(63, 140, 255, 1);
-        font-size: 0.95rem;
+        font-size: 0.72rem;
+
+        &::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
     }
+
+
 }
 </style>

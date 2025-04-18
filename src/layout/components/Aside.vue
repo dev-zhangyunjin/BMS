@@ -49,12 +49,12 @@ const handleLogout = () => {
         font-size: 1rem;
         font-weight: 700;
         color: rgba(0, 0, 0, 1);
-        padding: 16px 0;
+        padding: 1rem 0;
         @include global.flex-layout($justify: center, $align: center);
 
         img {
-            width: 44px;
-            padding-right: 6px;
+            width: 3rem;
+            padding-right: 0.5rem;
         }
     }
 
@@ -72,7 +72,7 @@ const handleLogout = () => {
         color: rgba(125, 133, 146, 1);
 
         .logout-text {
-            padding-left: 6px;
+            padding-left: 0.5rem;
         }
     }
 }

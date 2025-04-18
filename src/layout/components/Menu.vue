@@ -1,5 +1,5 @@
 <template>
-    <el-menu default-active="2" :collapse="isCollapse">
+    <el-menu default-active="" :collapse="isCollapse">
         <template v-for="item in menuArray" :key="item.path">
             <template v-if="item.children?.length > 0">
                 <el-sub-menu :index="item.path">
@@ -11,7 +11,7 @@
                     </template>
                     <el-menu-item-group>
                         <template v-for="chi in item.children" :key="chi.path">
-                            <router-link :to="item.path + '/' + chi.path">
+                            <router-link :to="item.path + '/' + chi.path" style=" text-decoration: none">
                                 <el-menu-item :index="chi.path">
                                     <template #title>
                                         <el-icon>
@@ -29,7 +29,7 @@
                 </el-sub-menu>
             </template>
             <template v-else>
-                <router-link :to="item.path">
+                <router-link :to="item.path" style=" text-decoration: none">
                     <el-menu-item :index="item.path">
                         <el-icon>
                             <Cssicon :name="item.icon" />
@@ -70,4 +70,10 @@ const menuArray = ref([{
 }])
 </script>
 
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+:deep(.el-menu-item),
+:deep(.el-sub-menu__title) {
+    font-size: 1.2rem;
+
+}
+</style>

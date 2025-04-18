@@ -11,9 +11,8 @@ const userStore = defineStore("user", {
     },
     actions: {
         login(user) {
-            const { userName, password } = user;
             return new Promise((resolve, reject) => {
-                userLogin({ userName, password }).then(res => {
+                userLogin(user).then(res => {
                     setToken(res.token)
                     resolve(res)
                 }).catch(err => {

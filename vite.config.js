@@ -8,6 +8,7 @@ export default defineConfig(({ command, mode }) => {
     root: '',
     base: '/webapp/',
     plugins: createVitePlugins(env, command === 'build'),
+    mode: "development",
     resolve: {
       // 为路径取别名
       alias: {
@@ -28,9 +29,10 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       port: 3000,
+      host: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:8080',
+          target: 'http://101.35.56.170:8080',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }

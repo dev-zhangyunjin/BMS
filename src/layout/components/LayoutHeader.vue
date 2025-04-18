@@ -1,91 +1,76 @@
 <template>
-    <div class="header-container">
-        <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        </el-breadcrumb>
-        <div class="header-right">
-            <div class="bell-v">
-                <el-badge :value="12">
-                    <Cssicon name="line-md:bell-loop" />
-                </el-badge>
+    <div class="head-container">
+        <el-input v-model="search" placeholder="搜索">
+            <template #prefix>
+                <Cssicon name="ri:search-line" />
+            </template>
+        </el-input>
+        <div class="bell-user-container">
+            <div class="bell">
+                <Cssicon name="mdi-light:bell" />
             </div>
-            <el-dropdown>
-                <div class="user-info">
-                    <img :src="userLogo" />
-                    <span>alex</span>
-                    <el-icon>
-                        <Cssicon name="lsicon:down-outline" />
-                    </el-icon>
-                </div>
-                <template #dropdown>
-                    <el-dropdown-menu>
-                        <el-dropdown-item>个人信息</el-dropdown-item>
-                        <el-dropdown-item>退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </template>
-            </el-dropdown>
+            <div class="user-container">
+                <img :src="userLogo" />
+                <span>
+                    admin
+                </span>
+                <Cssicon name="mingcute:down-line" style="font-size: 1.2rem; margin-left: 0.5rem;" />
+            </div>
         </div>
     </div>
-    <Tags></Tags>
 </template>
 
 <script setup>
 /**
 * @author 张云进
-* @description LayoutHeader
+* @description 
 */
 import userLogo from "@/assets/images/user.png"
-import Tags from "./Tags"
 const search = ref('')
 </script>
 
 <style lang='scss' scoped>
-.header-container {
-    // height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+$bell-bcc: #fff;
 
-    .header-right {
+.head-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .el-input {
+        width: 20rem;
+    }
+
+    .bell-user-container {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
-        .bell-v {
-            font-size: 1.5rem;
-            background-color: #fff;
-            padding: 6px;
-            border-radius: 5px;
-            margin-right: 32px;
-            cursor: pointer;
-            box-shadow: 0px 8.47px 81.88px rgba(196, 203, 214, 0.1);
+        .bell {
+            background-color: $bell-bcc;
+            padding: 0.5rem;
+            border-radius: 0.4rem;
         }
 
-        .user-info {
-            padding: 0 6px;
-            font-size: 1.2rem;
-            background-color: #fff;
+        .user-container {
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            border-radius: 4px;
-            left: 72px;
-            font-weight: 400;
-            color: rgba(10, 22, 41, 1);
+            background-color: $bell-bcc;
+            padding: 0.2rem 1rem;
+            margin-left: 2rem;
+            border-radius: 0.4rem;
 
             img {
-                width: 42px;
-                padding: 0 6px;
+                width: 2.5rem;
+            }
 
+            span {
+                // line-height: 2.5rem;
+                display: inline-block;
+                margin-left: 0.6rem;
             }
         }
-
-        .el-dropdown {
-            border: 0px;
-        }
     }
-}
-
-.tag-v {
-    // background-color: rgb(242, 242, 242);
 }
 </style>

@@ -1,75 +1,58 @@
 <template>
-    <el-container class="layout-container">
-        <el-aside class="layout-aside">
-            <Aside></Aside>
-        </el-aside>
-        <el-container>
-            <el-header class="layout-header">
-                <LayoutHeader></LayoutHeader>
-            </el-header>
-            <el-main class="layout-main">
-                <div class="app-contaner">
-                    <router-view></router-view>
-                </div>
-            </el-main>
-            <!-- <el-footer></el-footer> -->
-        </el-container>
-    </el-container>
+    <div class="layout-container">
+        <aside class="aside-container">
+            <LayoutSide></LayoutSide>
+        </aside>
+        <div class="main-container">
+            <header class="header">
+                <LayoutHeader />
+            </header>
+            <main class="main">
+                <router-view></router-view>
+            </main>
+        </div>
+    </div>
 </template>
 
-<script setup name="layout">
+<script setup>
 /**
 * @author 张云进
-* @description layout
+* @description layout 页面
 */
-import Aside from './components/Aside';
-import LayoutHeader from './components/LayoutHeader'
-const route = useRoute();
-onMounted(() => {
-    // 获取菜单资源
-
-    // 获取功能权限
-})
+import LayoutSide from "./components/LayoutSide"
+import LayoutHeader from "./components/LayoutHeader";
 </script>
 
 <style lang='scss' scoped>
+$layoutbcc: rgba(242, 248, 252, 1);
+
 .layout-container {
-    height: 100%;
-    width: 100%;
-    background-color: rgba(242, 248, 252, 1);
+    display: flex;
+    height: calc(100% - 2rem);
+    background-color: $layoutbcc;
+    padding: 1rem 2rem;
 
-    .el-aside {
-        width: 10%;
-        min-width: 200px;
+    .aside-container {
+        width: 16.67rem;
+        box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+        border-radius: 2rem;
+        // margin: 1rem 2rem;
+        background-color: #ffffff;
+        position: relative;
     }
 
-    .el-container {
-        .el-header {
-            // height: 5%;
-            padding: 6px;
-            min-height: 75px;
-            // background-color: pink;
+    .main-container {
+        width: 100%;
+        margin: 0 0 0 2rem;
+
+        .header {
+            height: 4rem;
+
         }
 
-        .el-main {
-            background-color: rgba(242, 248, 252, 1);
-            height: 100%;
-            padding: 20px 10px 20px 4px;
-
-            .app-contaner {
-                height: 100%;
-                background-color: #fff;
-            }
-        }
-
-        .el-footer {
-            background-color: yellowgreen;
+        .main {
+            height: calc(100% - 4rem);
         }
     }
-
-
-    // .layout-main {
-    //     height: 200%;
-    // }
 }
 </style>

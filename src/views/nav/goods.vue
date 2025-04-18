@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h1>数据看板</h1>
+        <h1>goods</h1>
     </div>
 </template>
 
 <script setup>
 /**
 * @author 张云进
-* @description index
+* @description 
 */
 </script>
 

@@ -6,11 +6,13 @@ import axios from "axios"
 import { getToken } from "@/utils/auth"
 import { transParams } from "@/utils/alex"
 import { ElNotification, ElMessageBox, ElMessage, ElLoading } from 'element-plus'
+import errorCode from "@/utils/errorCode"
+import cache from '@/plugins/cache'
 // 是否显示重新登录
 export let isRelogin = { show: false };
 const service = axios.create({
     // 设置基础请求路径
-    baseURL: '',
+    baseURL: '/api',
     timeout: 10000,
     headers: {
         "Content-Type": "application/json"
