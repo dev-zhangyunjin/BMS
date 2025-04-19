@@ -1,6 +1,6 @@
 @use "./reset.css";
 @use "./global.scss";
-@use "./element-ui.scss";
+@use "./theme.scss" as *;
 
 :root {
     font-size: 0.625vw;

@@ -19,11 +19,9 @@ export default defineConfig(({ command, mode }) => {
     },
     css: {
       preprocessorOptions: {
-        less: {
-          javascriptEnabled: true,
-        },
+
         scss: {
-          // additionalData: '@use "@/assets/styles/index.scss";'
+          additionalData: `@use "@/styles/element/index.scss" as *;`
         }
       },
     },

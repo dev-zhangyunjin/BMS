@@ -1,0 +1,32 @@
+@use 'sass:map';
+$themes: (
+    light:(bac:rgba(255, 255, 255, 1),
+        fca:rgba(41, 151, 100, 1),
+        fc:#3c3c43,
+        bac-m:rgba(255, 251, 255, 1),
+        bac-l:rgba(255, 255, 255, 1),
+        fc-white:rgba(255, 255, 255, 1)),
+    dark:(bac:rgba(27, 27, 31, 1),
+        fca:rgba(61, 214, 140, 1),
+        fc:rgba(206, 206, 214, 1),
+        bac-m:rgba(27, 27, 31, 0.9),
+        bac-l:rgba(43, 44, 51, 1),
+        fc-white:rgba(255, 255, 255, 1), )
+);
+$curTheme: light;
+
+@mixin useTheme() {
+
+    @each $key, $value in $themes {
+        $curTheme: $key !global;
+
+        html[data-theme='#{$key}'] & {
+            @content
+        }
+    }
+}
+
+@function getVar($key) {
+    $themeMap: map.get($themes, $curTheme);
+    @return map.get($themeMap , $key)
+}

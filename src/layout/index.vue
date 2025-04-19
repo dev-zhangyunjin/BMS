@@ -21,23 +21,34 @@
 */
 import LayoutSide from "./components/LayoutSide"
 import LayoutHeader from "./components/LayoutHeader";
+import { getToken } from "@/utils/auth"
+const router = useRouter()
+onMounted(() => {
+
+})
 </script>
 
 <style lang='scss' scoped>
-$layoutbcc: rgba(242, 248, 252, 1);
+@use "@/styles/theme.scss" as theme;
 
 .layout-container {
+    @include theme.useTheme {
+        background-color: theme.getVar('bac-m');
+    }
+
     display: flex;
     height: calc(100% - 2rem);
-    background-color: $layoutbcc;
     padding: 1rem 2rem;
 
     .aside-container {
         width: 16.67rem;
         box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
         border-radius: 2rem;
-        // margin: 1rem 2rem;
-        background-color: #ffffff;
+
+        @include theme.useTheme {
+            background-color: theme.getVar('bac');
+        }
+
         position: relative;
     }
 
@@ -52,6 +63,10 @@ $layoutbcc: rgba(242, 248, 252, 1);
 
         .main {
             height: calc(100% - 4rem);
+
+            @include theme.useTheme {
+                color: theme.getVar('fc');
+            }
         }
     }
 }

@@ -6,6 +6,9 @@
             </template>
         </el-input>
         <div class="bell-user-container">
+            <Cssicon name="mynaui:sun-solid" @click="handleTheme('light')" style="color: #fff;"
+                v-if="theme === 'dark'" />
+            <Cssicon name="bitcoin-icons:moon-outline" @click="handleTheme('dark')" style="color: #000;" v-else />
             <div class="bell">
                 <Cssicon name="mdi-light:bell" />
             </div>
@@ -26,11 +29,21 @@
 * @description 
 */
 import userLogo from "@/assets/images/user.png"
+import useStore from "@/pinia";
+const theme = ref('')
+onMounted(() => {
+    theme.value = useStore().setting.getTheme();
+})
 const search = ref('')
+const handleTheme = (val) => {
+    useStore().setting.setTheme(val);
+    theme.value = useStore().setting.getTheme();
+}
 </script>
 
 <style lang='scss' scoped>
 $bell-bcc: #fff;
+@use "@/styles/theme.scss" as theme;
 
 .head-container {
     display: flex;
@@ -47,7 +60,14 @@ $bell-bcc: #fff;
         cursor: pointer;
 
         .bell {
-            background-color: $bell-bcc;
+            margin-left: 3rem;
+
+            @include theme.useTheme {
+                background-color: theme.getVar('bac');
+                color: theme.getVar('fc');
+            }
+
+            // background-color: $bell-bcc;
             padding: 0.5rem;
             border-radius: 0.4rem;
         }
@@ -56,7 +76,14 @@ $bell-bcc: #fff;
             font-size: 1rem;
             display: flex;
             align-items: center;
-            background-color: $bell-bcc;
+            // background-color: rgba(61, 52, 27);
+
+            @include theme.useTheme {
+                background-color: theme.getVar('bac');
+                color: theme.getVar('fc');
+
+            }
+
             padding: 0.2rem 1rem;
             margin-left: 2rem;
             border-radius: 0.4rem;

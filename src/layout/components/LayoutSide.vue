@@ -56,7 +56,8 @@
 * @description 侧边菜单栏
 */
 import Logo from "@/assets/images/logo.png"
-import { computed } from "vue"
+import useStore from "@/pinia";
+
 const menus = ref([{
     path: "/nav",
     meta: { title: '导航', icon: '' },
@@ -100,17 +101,22 @@ const menus = ref([{
 // const currentPath = ref('')
 const route = useRoute();
 const currentPath = computed(() => {
-    console.log(route.path);
-
     return route.path
 })
 const handleTo = (path) => {
     // currentPath.value = path;
 }
-const handleLogout = () => { }
+const router = useRouter()
+const handleLogout = () => {
+    useStore().user.logout().then(() => {
+
+        router.push({ path: '/login' })
+    });
+}
 </script>
 
 <style lang='scss' scoped>
+@use "@/styles/theme.scss" as theme;
 $logo-f-c: rgba(0, 0, 0, 1);
 $menu-head-f-c: rgba(160, 174, 192, 1);
 $menu-head-b-c: rgba(238, 239, 242, 1);
@@ -132,6 +138,10 @@ $menu-f-c: rgba(113, 128, 150, 1);
         justify-content: center;
         margin-top: 2.05rem;
 
+        @include theme.useTheme {
+            color: theme.getVar('fc');
+        }
+
         img {
             width: 1.95rem;
         }
@@ -148,13 +158,24 @@ $menu-f-c: rgba(113, 128, 150, 1);
 
         .menu-item {
             .item-head {
+                @include theme.useTheme {
+                    color: theme.getVar('fc');
+                }
+
                 .head-v {
                     display: block;
                     font-size: 1rem;
                     font-weight: 400;
-                    color: $menu-head-f-c;
+
+
+
+                    // color: $menu-head-f-c;
                     padding: 2.2rem 0 0.9rem 1.4rem;
-                    border-bottom: 0.1rem solid $menu-head-b-c;
+                    border-bottom: 0.1rem solid;
+
+                    @include theme.useTheme {
+                        border-bottom-color: theme.getVar('fca');
+                    }
                 }
             }
 
@@ -162,7 +183,12 @@ $menu-f-c: rgba(113, 128, 150, 1);
                 text-decoration: none;
                 // background-color: red;
                 display: block;
-                color: $menu-f-c;
+
+                // color: $menu-f-c;
+                @include theme.useTheme {
+                    color: theme.getVar('fc');
+                }
+
                 margin-top: 0.5rem;
 
                 .menu-sec {
@@ -181,12 +207,22 @@ $menu-f-c: rgba(113, 128, 150, 1);
             }
 
             .active {
-                border-right: 0.15rem solid $menu-active-b-bc;
-                color: $menu-active-f-c;
+                border-right: 0.15rem solid;
 
-                .menu-sec {
-                    background-color: $menu-active-bc
+                @include theme.useTheme {
+                    border-right-color: theme.getVar('fca');
                 }
+
+                // color: $menu-active-f-c;
+                @include theme.useTheme {
+                    color: theme.getVar('fca');
+                }
+
+                // .menu-sec {
+                //     @include theme.useTheme {
+                //         color: theme.getVar('fca');
+                //     }
+                // }
             }
 
 
@@ -194,7 +230,7 @@ $menu-f-c: rgba(113, 128, 150, 1);
     }
 
     .logout-container {
-        border-top: 0.1rem solid $menu-head-f-c ;
+        border-top: 0.1rem solid;
         padding-top: 1rem;
         width: 100%;
         position: absolute;
@@ -205,6 +241,12 @@ $menu-f-c: rgba(113, 128, 150, 1);
         left: 50%;
         transform: translate(-50%, -50%);
         color: rgba(125, 133, 146, 1);
+
+        @include theme.useTheme {
+            border-top-color: theme.getVar('fca');
+            color: theme.getVar('fc');
+        }
+
         cursor: pointer;
 
         .logout-text {

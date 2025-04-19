@@ -24,7 +24,6 @@ const constantRoutes = [{
         path: 'operation',
         component: () => import('@/views/nav/operation'),
         name: 'Operation',
-
     }]
 }, {
     path: '/selling',

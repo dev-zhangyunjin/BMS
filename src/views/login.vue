@@ -49,7 +49,6 @@
             </div>
         </div>
     </main>
-
 </template>
 
 <script setup name="login">
@@ -134,14 +133,20 @@ getCookie();
 </script>
 
 <style lang='scss' scoped>
-@use '@/assets/styles/global.scss' as global;
+@use '@/styles/global.scss' as global;
+@use "@/styles/theme.scss" as *;
 $gbc: rgba(242, 248, 252, 1);
 $lbc: rgba(63, 140, 255, 1);
 $fbc: rgba(255, 255, 255, 1);
 
 .login-container {
     height: 100%;
-    background-color: $gbc;
+    // background-color: rgba(27, 27, 31, 1);
+
+    @include useTheme {
+        background-color: getVar('bac-m');
+    }
+
     @include global.flex-layout($justify: center, $align: center);
 
     .logo-c {
@@ -150,7 +155,12 @@ $fbc: rgba(255, 255, 255, 1);
         background-color: $lbc;
         border-radius: 1rem 0 0 1rem;
         font-size: 2rem;
-        color: #f5f5f5;
+
+        @include useTheme {
+            color: getVar('fc');
+        }
+
+        // color: #f5f5f5;
         font-weight: 700;
         line-height: 3rem;
         @include global.flex-layout($direction: column, $justify: center, $align: center);
@@ -165,7 +175,12 @@ $fbc: rgba(255, 255, 255, 1);
     .form-c {
         height: 72%;
         width: 30%;
-        background-color: $fbc;
+        // background-color: $fbc;
+
+        @include useTheme {
+            background-color: getVar('bac-l');
+        }
+
         border-radius: 0 1rem 1rem 0;
         @include global.flex-layout($direction: column, $justify: center, $align: center);
 
@@ -173,7 +188,11 @@ $fbc: rgba(255, 255, 255, 1);
             text-align: center;
             font-size: 1.8rem;
             font-weight: 700;
-            color: rgba(10, 22, 41, 1);
+
+            @include useTheme {
+                color: getVar('fc');
+            }
+
             vertical-align: top;
         }
 

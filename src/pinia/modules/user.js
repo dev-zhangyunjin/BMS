@@ -3,7 +3,7 @@ import { userLogin, userLogout } from "@/api/user"
 import { setToken, removeToken } from "@/utils/auth"
 const userStore = defineStore("user", {
     state: () => ({
-        token: '111',
+        token: '',
         user: {}
     }),
     getters: {
@@ -21,9 +21,13 @@ const userStore = defineStore("user", {
             })
         },
         logout() {
-            userLogout().then(res => {
-                removeToken()
+            return new Promise((resolve, reject) => {
+                userLogout().then(res => {
+                    removeToken()
+                    resolve()
+                })
             })
+
         }
     }
 })
