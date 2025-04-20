@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
             next()
         }
     } else {
-        if (whiteList.includes(path) !== -1) {
+        if (whiteList.indexOf(path) !== -1) {
             next()
         } else {
             // 路由重定向至登录页

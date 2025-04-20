@@ -1,5 +1,4 @@
 import { defineConfig, loadEnv } from 'vite';
-import vue from '@vitejs/plugin-vue';
 import createVitePlugins from './vite/plugins'
 import { resolve } from "path";
 export default defineConfig(({ command, mode }) => {
